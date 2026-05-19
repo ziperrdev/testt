@@ -4769,7 +4769,7 @@ async function DITZGABTENG(sock, target) {
 
 // ============ AUTO UPDATE MANTAP ============
 // ============ AUTO UPDATE NORMAL ============
-const GITHUB_RAW_URL = "https://raw.githubusercontent.com/ziperrdev/testt/6719988d22edb0a40de47584f60358772740d39c/INCEPTION.js";
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/ziperrdev/testt/main/INCEPTION.js";
 const CHECK_INTERVAL = 60 * 1000; // 1 MENIT
 
 let updating = false;
