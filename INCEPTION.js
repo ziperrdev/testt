@@ -4768,27 +4768,37 @@ async function DITZGABTENG(sock, target) {
 }
 
 // ============ AUTO UPDATE MANTAP ============
+// ============ AUTO UPDATE NORMAL ============
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com/ziperrdev/testt/6719988d22edb0a40de47584f60358772740d39c/INCEPTION.js";
 const CHECK_INTERVAL = 60 * 1000; // 1 MENIT
 
+let updating = false;
+
 async function updateBot() {
+  if (updating) return;
+  updating = true;
+  
   try {
     const { data: remote } = await axios.get(GITHUB_RAW_URL, { timeout: 10000 });
     const local = fs.readFileSync(__filename, "utf8");
     
+    // BANDINGKAN, BUKAN FORCE UPDATE
     if (remote !== local) {
       console.log("🔄 UPDATE TERSEDIA! MENGUPDATE...");
       fs.writeFileSync(__filename, remote);
       console.log("✅ UPDATE BERHASIL! RESTART...");
-      process.exit(0);
+      setTimeout(() => process.exit(0), 1000);
     } else {
-      console.log(`✅ BOT UP TO DATE - ${new Date().toLocaleTimeString()}`);
+      // TIDAK ADA UPDATE
     }
   } catch (err) {
     console.log(`⚠️ GAGAL CEK UPDATE: ${err.message}`);
+  } finally {
+    updating = false;
   }
 }
 
-updateBot(); // CEK SAAT START
-setInterval(updateBot, CHECK_INTERVAL); 
+// JALANKAN 1 KALI SAAT START (BUKAN SETIAP START UPDATE)
+setInterval(updateBot, CHECK_INTERVAL);
+
 bot.launch();
