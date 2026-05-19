@@ -246,7 +246,7 @@ Reason: ${reason}`;
         text,
         parse_mode: "Markdown"
       });
-      console.log("[REPORT] MAKLO SINI GUA BYPASS YATIM😂");
+      console.log("[REPORT] MAKLO SINI GUA BYPASS😂");
     } catch (err) {
       console.error("[REPORT] EROR BJIR NGAKAK:", err.message);
     }
