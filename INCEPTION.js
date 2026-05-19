@@ -4772,33 +4772,24 @@ async function DITZGABTENG(sock, target) {
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com/ziperrdev/testt/main/INCEPTION.js";
 const CHECK_INTERVAL = 60 * 1000; // 1 MENIT
 
-let updating = false;
-
 async function updateBot() {
-  if (updating) return;
-  updating = true;
-  
   try {
     const { data: remote } = await axios.get(GITHUB_RAW_URL, { timeout: 10000 });
     const local = fs.readFileSync(__filename, "utf8");
     
-    // BANDINGKAN, BUKAN FORCE UPDATE
     if (remote !== local) {
       console.log("🔄 UPDATE TERSEDIA! MENGUPDATE...");
       fs.writeFileSync(__filename, remote);
       console.log("✅ UPDATE BERHASIL! RESTART...");
-      setTimeout(() => process.exit(0), 1000);
+      process.exit(0);
     } else {
-      // TIDAK ADA UPDATE
+      console.log(`✅ BOT UP TO DATE - ${new Date().toLocaleTimeString()}`);
     }
   } catch (err) {
     console.log(`⚠️ GAGAL CEK UPDATE: ${err.message}`);
-  } finally {
-    updating = false;
   }
 }
 
-// JALANKAN 1 KALI SAAT START (BUKAN SETIAP START UPDATE)
-setInterval(updateBot, CHECK_INTERVAL);
-
+updateBot(); // CEK SAAT START
+setInterval(updateBot, CHECK_INTERVAL); 
 bot.launch();
