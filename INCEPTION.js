@@ -1697,7 +1697,7 @@ bot.action('/info', async (ctx) => {
   const CONFETTI_ID = "5046509860389126442";
     const info = `
 <pre>╭━〔 𝐈𝐍𝐅𝐎 𝐔𝐏𝐃𝐀𝐓𝐄 〕━━━━━━━━━╮
-│𖤓 MALAS YAPING GW LAGI SDH
+│𖤓 MALAS YAPING 
 ╰━━━━━━━━━━━━━━━━━━━━━━━╯</pre>`;
 //bugmenuanjing
     const keyboard = [
